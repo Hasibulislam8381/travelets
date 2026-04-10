@@ -1,0 +1,24 @@
+.section-padding{
+    padding-top: 30px;
+}
+.hero-stats span{
+    color:#B8431A;
+}
+.custom_btn_primary_color{
+    background-color: #B8431A !important;
+    border: none !important;
+}
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* লোগো এবং টেক্সটের মাঝের গ্যাপ */
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+}
+
+.logo-img {
+    height: 40px; /* আপনার নেভবারের হাইট অনুযায়ী অ্যাডজাস্ট করুন */
+    width: auto;  /* লোগোর রেশিও ঠিক রাখার জন্য */
+    object-fit: contain;
+}
