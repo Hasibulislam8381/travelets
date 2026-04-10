@@ -15,7 +15,7 @@
 
             <div class="hero-cta d-flex gap-3 mb-5">
                 <a href="#offer" class="btn btn-primary px-4 py-2 custom_btn_primary_color">Explore Services</a>
-                <a href="#book" class="btn btn-outline-dark px-4 py-2">Book Now</a>
+                <a href="#book" class="btn btn-outline-dark px-4 py-2 custom_btn_secondary_color">Book Now</a>
             </div>
 
             <div class="hero-stats d-flex flex-wrap gap-4 mt-auto">

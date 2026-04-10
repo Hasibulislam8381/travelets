@@ -4,4 +4,10 @@
 
 @section('content')
     @include('pages.hero')
+    @include('pages.category_home')
+    @include('pages.womens_travell')
+    @include('pages.skill_trainning')
+    @include('pages.become_volunteer')
+    @include('pages.dorm')
+    @include('pages.testimonial')
 @endsection

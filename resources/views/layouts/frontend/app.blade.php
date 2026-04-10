@@ -11,12 +11,10 @@
 
     <title>@yield('title', 'Vromonkonna') – Women Exploring Bangladesh &amp; Beyond</title>
     <meta name="description" content="@yield('meta_description', 'A comprehensive women\'s platform redefining safety, growth, and opportunity in Bangladesh.')">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
-        integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- google font --}}
+    <link href="asset('frontend/css/css2.css')" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/css/swiper-bundle.min.css') }}" />
     @yield('styles')
 </head>
 
@@ -30,9 +28,9 @@
     @include('partials.footer')
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js"
-        integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/swiper-bundle.min.js') }}"></script>
+    @stack('scripts')
     @yield('scripts')
 
 </body>

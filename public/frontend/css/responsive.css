@@ -38,6 +38,11 @@
 }
 
 @media (max-width: 640px) {
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
     nav {
         padding: 0 16px;
     }
