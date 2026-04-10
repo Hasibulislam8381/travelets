@@ -1,0 +1,60 @@
+@media (max-width: 1024px) {
+    nav {
+        padding: 0 24px;
+    }
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    .hero-right {
+        height: 50vh;
+    }
+    .hero-left {
+        padding: 60px 32px;
+    }
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+    }
+    footer {
+        padding: 48px 32px 24px;
+    }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 991px) {
+    .hero {
+        height: auto;
+    }
+    .hero-right {
+        height: 500px;
+    }
+    .tour-cards-strip {
+        flex-wrap: wrap;
+    }
+    .custom-tour-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 640px) {
+    nav {
+        padding: 0 16px;
+    }
+    .nav-links {
+        display: none;
+    }
+    .hero-left {
+        padding: 48px 20px;
+    }
+    .hero-stats {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+    footer {
+        padding: 40px 20px 20px;
+    }
+}
