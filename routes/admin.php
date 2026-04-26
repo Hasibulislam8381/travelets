@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Backend\DashBoardController;
 use App\Http\Controllers\Web\Backend\DynamicPageController;
+use App\Http\Controllers\Web\Backend\HeroSectionController;
 use App\Http\Controllers\Web\Backend\ProfileController;
 use App\Http\Controllers\Web\Backend\SocialMediaController;
 use App\Http\Controllers\Web\Backend\SystemSettingController;
@@ -36,4 +37,9 @@ Route::controller(DynamicPageController::class)->group(function () {
     Route::post('/dynamic-page/update/{id}', 'update')->name('dynamic_page.update');
     Route::get('/dynamic-page/status/{id}', 'status')->name('dynamic_page.status');
     Route::delete('/dynamic-page/destroy/{id}', 'destroy')->name('dynamic_page.destroy');
+});
+Route::prefix('hero-section')->name('hero_section.')->group(function () {
+    Route::get('/', [HeroSectionController::class, 'index'])->name('index');
+    Route::post('/store', [HeroSectionController::class, 'store'])->name('store');
+    Route::post('/status/{id}', [HeroSectionController::class, 'status'])->name('status');
 });

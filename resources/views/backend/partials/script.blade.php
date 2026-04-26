@@ -38,6 +38,7 @@
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{ asset('backend/js/script.js') }}"></script>
+<script src="{{ asset('backend/js/filepond-init.js') }}"></script>
 {{-- <script src="{{ asset('backend/js/customizer.js') }}"></script> --}}
 
 {{-- dropify start --}}

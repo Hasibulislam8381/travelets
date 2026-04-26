@@ -10,4 +10,8 @@
     @include('pages.become_volunteer')
     @include('pages.dorm')
     @include('pages.testimonial')
+    @include('pages.awards')
+    @include('pages.souvenirs')
+    @include('pages.about')
+    @include('pages.team')
 @endsection
