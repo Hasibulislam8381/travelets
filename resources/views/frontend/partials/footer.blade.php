@@ -14,8 +14,6 @@
                 <a href="#" class="social-btn">🐦</a>
             </div>
         </div>
-
-        <!-- Travels -->
         <div>
             <div class="footer-col-title">Travels</div>
             <ul class="footer-links">

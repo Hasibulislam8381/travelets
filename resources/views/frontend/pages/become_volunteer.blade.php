@@ -4,7 +4,7 @@
 
             <!-- Left -->
             <div class="col-lg-6">
-                <h2 class="section-title">A home away from home*</h2>
+                <h2 class="section-title">A home away from home fdsdsfds</h2>
                 <p class="section-desc">Empowering women across Bangladesh through safe travel, skill-building, secure
                     stays, and inclusive growth programs — created by women, for women.</p>
 

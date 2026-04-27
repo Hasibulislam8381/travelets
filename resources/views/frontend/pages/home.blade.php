@@ -1,0 +1,11 @@
+@extends('frontend.layouts.app')
+@section('title', 'Home')
+@section('content')
+    @include('frontend.pages.hero')
+    @include('frontend.pages.category_home')
+    @include('frontend.pages.womens_travell')
+    @include('frontend.pages.skill_trainning')
+    @include('frontend.pages.become_volunteer')
+    @include('frontend.pages.dorm')
+    @include('frontend.pages.testimonial')
+@endsection

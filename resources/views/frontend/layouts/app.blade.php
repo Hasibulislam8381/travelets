@@ -19,20 +19,16 @@
 </head>
 
 <body>
-
-    @include('partials.navbar')
+    @include('frontend.partials.navbar')
     <main id="main-content">
         @yield('content')
     </main>
-
-    @include('partials.footer')
+    @include('frontend.partials.footer')
     <script src="{{ asset('frontend/js/main.js') }}"></script>
-
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/js/swiper-bundle.min.js') }}"></script>
     @stack('scripts')
     @yield('scripts')
-
 </body>
 
 </html>

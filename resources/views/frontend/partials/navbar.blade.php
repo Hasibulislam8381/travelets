@@ -6,7 +6,7 @@
         <li><a href="#travel">Travel</a></li>
         <li><a href="#training">Training</a></li>
         <li><a href="#dormitory">Dormitory</a></li>
-        <li><a href="#social">Social Act</a></li>
+        <li><a href="#social">Social Actdd</a></li>
         <li><a href="#souvenirs">Souvenirs</a></li>
         <li><a href="#about">About</a></li>
     </ul>
