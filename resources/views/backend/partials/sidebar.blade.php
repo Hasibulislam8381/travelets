@@ -111,34 +111,19 @@
                            <h6 class="lan-8">Applications</h6>
                        </div>
                    </li>
-                   {{-- <li class="sidebar-list">
-                       <i class="fa fa-thumb-tack"></i>
-                       <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}"
-                           href="#">
+                   <li class="sidebar-list">
+                       <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.hero_section.*') ? 'active' : '' }}"
+                           href="{{ route('admin.hero_section.index') }}">
                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                                fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round"
                                stroke-linejoin="round">
-                               <path
-                                   d="M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9z" />
-                               <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
+                               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                               <path d="M3 9h18"></path>
+                               <path d="M9 21V9"></path>
                            </svg>
-                           <span>Blogs</span>
+                           <span>Hero Section</span>
                        </a>
-                       <ul class="sidebar-submenu {{ request()->routeIs('admin.blogs.*') ? 'd-block' : '' }}">
-                           <li>
-                               <a class="{{ request()->routeIs('admin.blogs.index') ? 'active' : '' }}"
-                                   href="{{ route('admin.blogs.index') }}">
-                                   Blog List
-                               </a>
-                           </li>
-                           <li>
-                               <a class="{{ request()->is('admin/blogs/list-view') ? 'active' : '' }}"
-                                   href="job-list-view.html">
-                                   List View
-                               </a>
-                           </li>
-                       </ul>
-                   </li> --}}
+                   </li>
                </ul>
                <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
            </div>

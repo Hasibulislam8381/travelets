@@ -110,7 +110,8 @@
                             <li>Certificate of volunteering issued</li>
                             <li>Discounts on all Travelettes programs</li>
                         </ul>
-                        <a href="#" class="apply-btn">Apply to Volunteer</a>
+                        <a href="#" class="apply-btn" data-bs-toggle="modal"
+                            data-bs-target="#volunteerModal">Apply to Volunteer</a>
                     </div>
 
                     <!-- Support Bar -->
@@ -119,12 +120,154 @@
                             <h5>Support the Cause</h5>
                             <p>100% goes to non-profit gender equity programs</p>
                         </div>
-                        <a href="#" class="donation-btn">Donation Now</a>
+                        <a href="#" class="donation-btn" data-bs-toggle="modal"
+                            data-bs-target="#donationModal">Donation Now</a>
                     </div>
 
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div class="modal fade" id="volunteerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 p-2">
+
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"
+                        style="color:var(--orange);font-family:'Playfair Display',serif;font-size:22px;">
+                        Join as a Volunteer
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body pt-3">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size:13px;">Area of interest*</label>
+                        <select class="form-select" style="font-size:13px;border-color:#ddd;border-radius:6px;">
+                            <option>Sundarban Mangrove Safari - ৳4,500</option>
+                            <option>Sajek Valley Hill Trek - ৳3,800</option>
+                            <option>Cox's Bazar Beach Retreat - ৳5,200</option>
+                            <option>Bandarban Mountain Tour - ৳4,100</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size:13px;">Your Full Name*</label>
+                        <input type="text" class="form-control" placeholder="name as nid"
+                            style="font-size:13px;border-color:#ddd;border-radius:6px;">
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label class="form-label fw-semibold" style="font-size:13px;">Phone Number*</label>
+                            <input type="tel" class="form-control" placeholder="01********"
+                                style="font-size:13px;border-color:#ddd;border-radius:6px;">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label fw-semibold" style="font-size:13px;">No. of Participants</label>
+                            <input type="text" class="form-control" placeholder="01********"
+                                style="font-size:13px;border-color:#ddd;border-radius:6px;">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size:13px;">Your Availability*</label>
+                        <select class="form-select" style="font-size:13px;border-color:#ddd;border-radius:6px;">
+                            <option>Weekends only</option>
+                            <option>Weekdays only</option>
+                            <option>Full-time</option>
+                            <option>Flexible</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold" style="font-size:13px;">Why do you want to volunteer (
+                            optional )</label>
+                        <textarea class="form-control" rows="4" placeholder="Tell us a bit about yourself"
+                            style="font-size:13px;border-color:#ddd;border-radius:6px;resize:none;"></textarea>
+                    </div>
+
+                    <button type="button" class="btn w-100 py-3 fw-bold text-white rounded-3"
+                        style="background:var(--orange);font-size:15px;border:none;">
+                        Apply to Volunteer
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="donationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 p-2">
+
+                <div class="modal-header border-0 pb-0">
+                    <div>
+                        <h5 class="modal-title fw-bold"
+                            style="color:var(--orange);font-family:'Playfair Display',serif;font-size:22px;">
+                            Make a Donation
+                        </h5>
+                        <p style="font-size:12px;color:#888;margin-top:4px;max-width:320px;">
+                            100% of your donations funds our non-profit gender equity programs, legal aid, rural
+                            outreach and girls education scholarships.
+                        </p>
+                    </div>
+                    <button type="button" class="btn-close align-self-start mt-1" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body pt-2">
+
+                    {{-- Amount Buttons --}}
+                    <div class="d-flex gap-2 mb-3">
+                        <button type="button" class="donation-amount-btn flex-fill py-2 rounded-2 border"
+                            style="font-size:14px;font-weight:600;background:white;border-color:#ddd;color:#333;">
+                            ৳4,500
+                        </button>
+                        <button type="button"
+                            class="donation-amount-btn flex-fill py-2 rounded-2 border active-amount"
+                            style="font-size:14px;font-weight:600;">
+                            ৳4,500
+                        </button>
+                        <button type="button" class="donation-amount-btn flex-fill py-2 rounded-2 border"
+                            style="font-size:14px;font-weight:600;background:white;border-color:#ddd;color:#333;">
+                            ৳4,500
+                        </button>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size:13px;">Or enter a custom amount
+                            (BDT)</label>
+                        <input type="text" class="form-control" placeholder="Sundarban Mangrove Safari - ৳4,500"
+                            style="font-size:13px;border-color:#ddd;border-radius:6px;">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size:13px;">Your name (optional - leave
+                            blank to donate anonymously)</label>
+                        <input type="text" class="form-control" placeholder="Anonymous"
+                            style="font-size:13px;border-color:#ddd;border-radius:6px;">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold" style="font-size:13px;">Payment Method</label>
+                        <select class="form-select" style="font-size:13px;border-color:#ddd;border-radius:6px;">
+                            <option>Bkash</option>
+                            <option>Nagad</option>
+                            <option>Rocket</option>
+                            <option>Bank Transfer</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn w-100 py-3 fw-bold text-white rounded-3"
+                        style="background:var(--orange);font-size:15px;border:none;">
+                        Proceed to Donate
+                    </button>
+
+                </div>
+            </div>
         </div>
     </div>
 </section>

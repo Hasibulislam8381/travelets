@@ -8,4 +8,8 @@
     @include('frontend.pages.become_volunteer')
     @include('frontend.pages.dorm')
     @include('frontend.pages.testimonial')
+    @include('frontend.pages.awards')
+    @include('frontend.pages.souvenirs')
+    @include('frontend.pages.about')
+    @include('frontend.pages.team')
 @endsection

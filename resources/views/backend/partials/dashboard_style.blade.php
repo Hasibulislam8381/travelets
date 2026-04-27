@@ -49,6 +49,16 @@
  <link rel="stylesheet" href="{{ asset('backend/css/datatables.min.css') }}" />
 
  <script src="{{ asset('backend/js/sweetalert2@11.js') }}"></script>
+ {{-- Filepond CSS --}}
+ <link href="{{ asset('backend/css/filepond.css') }}" rel="stylesheet">
+ <link href="{{ asset('backend/css/filepond-plugin-image-preview.css') }}" rel="stylesheet">
+
+ {{-- Filepond JS --}}
+ <script src="{{ asset('backend/js/filepond-plugin-image-preview.js') }}"></script>
+ <script src="{{ asset('backend/js/filepond-plugin-file-validate-type.js') }}"></script>
+ <script src="{{ asset('backend/js/filepond-plugin-file-validate-size.js') }}"></script>
+ <script src="{{ asset('backend/js/filepond.js') }}"></script>
+
 
  {{-- dropify and ck-editor start --}}
  <style>
