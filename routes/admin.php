@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Web\Backend\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Backend\DashBoardController;
 use App\Http\Controllers\Web\Backend\DynamicPageController;
 use App\Http\Controllers\Web\Backend\HeroSectionController;
+use App\Http\Controllers\Web\Backend\ProductController;
 use App\Http\Controllers\Web\Backend\ProfileController;
 use App\Http\Controllers\Web\Backend\SocialMediaController;
 use App\Http\Controllers\Web\Backend\SystemSettingController;
@@ -42,4 +44,22 @@ Route::prefix('hero-section')->name('hero_section.')->group(function () {
     Route::get('/', [HeroSectionController::class, 'index'])->name('index');
     Route::post('/store', [HeroSectionController::class, 'store'])->name('store');
     Route::post('/status/{id}', [HeroSectionController::class, 'status'])->name('status');
+});
+Route::prefix('category')->name('category.')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('index');
+    Route::get('/create', [CategoryController::class, 'create'])->name('create');
+    Route::post('/store', [CategoryController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [CategoryController::class, 'update'])->name('update');
+    Route::get('/status/{id}', [CategoryController::class, 'status'])->name('status');
+    Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+});
+Route::prefix('product')->name('product.')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::get('/create', [ProductController::class, 'create'])->name('create');
+    Route::post('/store', [ProductController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [ProductController::class, 'update'])->name('update');
+    Route::get('/status/{id}', [ProductController::class, 'status'])->name('status');
+    Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy');
 });
