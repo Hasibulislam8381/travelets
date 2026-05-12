@@ -7,7 +7,7 @@ use App\Http\Controllers\Web\Frontend\TourController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/', [TourController::class, 'details'])->name('tour-detail');
+Route::get('/tour-details/{slug}', [TourController::class, 'details'])->name('tour-detail');
 // Route::get('/dashboard', [DashBoardController::class, 'index'])
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');

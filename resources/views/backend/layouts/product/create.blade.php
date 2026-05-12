@@ -44,7 +44,17 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="col-md-3 d-none" id="tourTypeWrapper">
+                                    <label class="form-label fw-semibold">Tour sub Category</label>
 
+                                    <select name="tour_type" id="tourType" class="form-select">
+                                        <option value="">-- Select Tour Type --</option>
+                                        <option value="bangladesh">Bangladesh</option>
+                                        <option value="abroad">Abroad</option>
+                                        <option value="adventure">Adventure</option>
+                                        <option value="international-tour">International Tour</option>
+                                    </select>
+                                </div>
                                 <div class="col-md-3">
                                     <label class="form-label fw-semibold">Category <span
                                             class="text-danger">*</span></label>
@@ -327,65 +337,111 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @push('script')
     <script>
-        // Dropify
-        $('#thumbnailInput').dropify();
+        $(document).ready(function() {
 
-        // Type change → show/hide fields + filter categories
-        $('#productType').on('change', function() {
-            const type = $(this).val();
+            // Dropify init
+            $('#thumbnailInput').dropify();
 
-            $('#tour-fields, #training-fields, #souvenir-fields').addClass('d-none');
+            // handle product type change
+            $('#productType').on('change', function() {
+                handleProductType($(this).val());
+            });
 
-            if (type === 'tour') $('#tour-fields').removeClass('d-none');
-            if (type === 'training') $('#training-fields').removeClass('d-none');
-            if (type === 'souvenir') $('#souvenir-fields').removeClass('d-none');
-            if (type === 'dormitory') $('#dormitory-fields').removeClass('d-none');
-            // Filter categories by type
+            // initial load state (VERY IMPORTANT)
+            const oldType = $('#productType').val();
+            if (oldType) {
+                handleProductType(oldType);
+            }
+        });
+
+        // ==============================
+        // PRODUCT TYPE HANDLER
+        // ==============================
+        function handleProductType(type) {
+
+            // hide all dynamic sections first
+            $('#tour-fields, #training-fields, #souvenir-fields, #dormitory-fields')
+                .addClass('d-none');
+
+            // TOUR
+            if (type === 'tour') {
+                $('#tour-fields').removeClass('d-none');
+                $('#tourTypeWrapper').removeClass('d-none');
+            } else {
+                $('#tourTypeWrapper').addClass('d-none');
+                $('#tourType').val('');
+            }
+
+            // TRAINING
+            if (type === 'training') {
+                $('#training-fields').removeClass('d-none');
+            }
+
+            // SOUVENIR
+            if (type === 'souvenir') {
+                $('#souvenir-fields').removeClass('d-none');
+            }
+
+            // DORMITORY
+            if (type === 'dormitory') {
+                $('#dormitory-fields').removeClass('d-none');
+            }
+
+            // CATEGORY FILTER
             $('#categorySelect option').each(function() {
                 const optType = $(this).data('type');
+
                 if (!optType || optType === type) {
                     $(this).show();
                 } else {
                     $(this).hide();
                 }
             });
-            $('#categorySelect').val('');
-        });
 
-        // Trigger on load if old value exists
-        const oldType = '{{ old('type') }}';
-        if (oldType) {
-            $('#productType').val(oldType).trigger('change');
+            $('#categorySelect').val('');
         }
 
-        // Add dynamic field
+        // ==============================
+        // ADD DYNAMIC FIELD
+        // ==============================
         function addField(wrapperId, fieldName) {
+
             const wrapper = document.getElementById(wrapperId);
             const count = wrapper.querySelectorAll('input').length + 1;
+
             const div = document.createElement('div');
             div.className = 'input-group mb-2';
+
             div.innerHTML = `
             <input type="text" name="${fieldName}" class="form-control" placeholder="Item ${count}">
             <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()">−</button>
         `;
+
             wrapper.appendChild(div);
         }
 
-        // Add itinerary day
+        // ==============================
+        // ADD ITINERARY DAY
+        // ==============================
         function addItinerary() {
+
             const wrapper = document.getElementById('itinerary-wrapper');
             const day = wrapper.querySelectorAll('.input-group').length + 1;
+
             const div = document.createElement('div');
             div.className = 'input-group mb-2';
+
             div.innerHTML = `
             <span class="input-group-text">Day ${day}</span>
             <input type="text" name="itinerary[]" class="form-control" placeholder="Day ${day} description">
             <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()">−</button>
         `;
+
             wrapper.appendChild(div);
         }
     </script>

@@ -11,6 +11,7 @@ class Product extends Model
         'title',
         'slug',
         'type',
+        'tour_type',
         'badge',
         'location',
         'short_description',

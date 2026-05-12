@@ -33,7 +33,7 @@ class ProductController extends Controller
             if (!empty($request->input('search.value'))) {
                 $searchTerm = $request->input('search.value');
                 $data->where('title', 'LIKE', "%$searchTerm%")
-                     ->orWhere('type', 'LIKE', "%$searchTerm%");
+                    ->orWhere('type', 'LIKE', "%$searchTerm%");
             }
 
             return DataTables::of($data)
@@ -140,6 +140,8 @@ class ProductController extends Controller
                 $product->title             = $request->title;
                 $product->slug              = Str::slug($request->title);
                 $product->type              = $request->type;
+                $product->tour_type         = $request->tour_type;
+
                 $product->badge             = $request->badge;
                 $product->location          = $request->location;
                 $product->short_description = $request->short_description;
@@ -219,6 +221,7 @@ class ProductController extends Controller
                 $product->title             = $request->title;
                 $product->slug              = Str::slug($request->title);
                 $product->type              = $request->type;
+                $product->tour_type         = $request->tour_type;
                 $product->badge             = $request->badge;
                 $product->location          = $request->location;
                 $product->short_description = $request->short_description;

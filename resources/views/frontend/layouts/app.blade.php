@@ -23,7 +23,9 @@
     <main id="main-content">
         @yield('content')
     </main>
+
     @include('frontend.partials.footer')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/js/swiper-bundle.min.js') }}"></script>

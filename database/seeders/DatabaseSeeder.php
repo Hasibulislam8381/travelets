@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             SocialMediaSeeder::class,
             DynamicPagesSeeder::class,
             UserSeeder::class,
-            HeroSectionSeeder::class
+            HeroSectionSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class
         ]);
     }
 }
