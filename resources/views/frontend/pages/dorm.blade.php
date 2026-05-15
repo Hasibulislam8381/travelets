@@ -190,7 +190,7 @@
                                 </div>
                             </div>
 
-                            <a href="#"  class="request-btn">Request Booking</a>
+                            <a href="#" class="request-btn">Request Booking</a>
 
                         </div>
 

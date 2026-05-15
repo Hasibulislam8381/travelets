@@ -47,15 +47,6 @@ class ProductController extends Controller
                 ->addColumn('category', function ($data) {
                     return $data->category->name ?? '-';
                 })
-                ->addColumn('type', function ($data) {
-                    $colors = [
-                        'tour'     => 'primary',
-                        'training' => 'success',
-                        'souvenir' => 'warning',
-                    ];
-                    $color = $colors[$data->type] ?? 'secondary';
-                    return '<span class="badge bg-' . $color . '">' . ucfirst($data->type) . '</span>';
-                })
                 ->addColumn('price', function ($data) {
                     return '৳' . number_format($data->price, 2);
                 })
@@ -87,7 +78,7 @@ class ProductController extends Controller
                         </div>
                     ';
                 })
-                ->rawColumns(['thumbnail', 'category', 'type', 'price', 'status', 'action'])
+                ->rawColumns(['thumbnail', 'category', 'price', 'status', 'action'])
                 ->make();
         }
 
@@ -121,7 +112,6 @@ class ProductController extends Controller
                 $validator = Validator::make($request->all(), [
                     'category_id'       => 'required|exists:categories,id',
                     'title'             => 'required|string|max:255',
-                    'type'              => 'required|in:tour,training,souvenir',
                     'badge'             => 'nullable|string|max:50',
                     'location'          => 'nullable|string|max:255',
                     'short_description' => 'nullable|string',
@@ -147,7 +137,8 @@ class ProductController extends Controller
                 $product->short_description = $request->short_description;
                 $product->description       = $request->description;
                 $product->price             = $request->price;
-                $product->meta              = $this->buildMeta($request);
+                $category        = Category::findOrFail($request->category_id);
+                $product->meta   = $this->buildMeta($request, $category->type);
 
                 if ($request->hasFile('thumbnail')) {
                     $product->thumbnail = $request->file('thumbnail')->store('products/thumbnails', 'public');
@@ -202,7 +193,6 @@ class ProductController extends Controller
                 $validator = Validator::make($request->all(), [
                     'category_id'       => 'required|exists:categories,id',
                     'title'             => 'required|string|max:255',
-                    'type'              => 'required|in:tour,training,souvenir',
                     'badge'             => 'nullable|string|max:50',
                     'location'          => 'nullable|string|max:255',
                     'short_description' => 'nullable|string',
@@ -227,7 +217,8 @@ class ProductController extends Controller
                 $product->short_description = $request->short_description;
                 $product->description       = $request->description;
                 $product->price             = $request->price;
-                $product->meta              = $this->buildMeta($request);
+                $category        = Category::findOrFail($request->category_id);
+                $product->meta   = $this->buildMeta($request, $category->type);
 
                 if ($request->hasFile('thumbnail')) {
                     if ($product->thumbnail && Storage::disk('public')->exists($product->thumbnail)) {
@@ -329,29 +320,29 @@ class ProductController extends Controller
      * @param Request $request
      * @return array
      */
-    private function buildMeta(Request $request): array
+    private function buildMeta(Request $request, string $categoryType): array
     {
-        return match ($request->type) {
-            'tour' => [
+        return match ($categoryType) {
+            'womens_journey' => [
                 'duration'   => $request->duration,
                 'group_size' => $request->group_size,
                 'includes'   => array_filter($request->includes ?? []),
                 'excludes'   => array_filter($request->excludes ?? []),
                 'itinerary'  => array_filter($request->itinerary ?? []),
             ],
-            'training' => [
-                'sessions'         => array_filter($request->sessions ?? []),
-                'levels'           => array_filter($request->levels ?? []),
-                'satisfied_count'  => $request->satisfied_count,
-            ],
-            'souvenir' => [
-                'material' => $request->material,
-                'origin'   => $request->origin,
+            'skill_training' => [
+                'sessions'        => array_filter($request->sessions ?? []),
+                'levels'          => array_filter($request->levels ?? []),
+                'satisfied_count' => $request->satisfied_count,
             ],
             'dormitory' => [
                 'features'    => array_filter($request->features ?? []),
                 'price_plans' => array_filter($request->price_plans ?? []),
                 'room_types'  => array_filter($request->room_types ?? []),
+            ],
+            'souvenirs' => [
+                'material' => $request->material,
+                'origin'   => $request->origin,
             ],
             default => [],
         };

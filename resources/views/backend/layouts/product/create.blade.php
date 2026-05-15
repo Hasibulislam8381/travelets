@@ -26,7 +26,7 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-
+                                {{-- 
                                 <div class="col-md-3">
                                     <label class="form-label fw-semibold">Type <span class="text-danger">*</span></label>
                                     <select name="type" id="productType"
@@ -43,18 +43,7 @@
                                     @error('type')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>
-                                <div class="col-md-3 d-none" id="tourTypeWrapper">
-                                    <label class="form-label fw-semibold">Tour sub Category</label>
-
-                                    <select name="tour_type" id="tourType" class="form-select">
-                                        <option value="">-- Select Tour Type --</option>
-                                        <option value="bangladesh">Bangladesh</option>
-                                        <option value="abroad">Abroad</option>
-                                        <option value="adventure">Adventure</option>
-                                        <option value="international-tour">International Tour</option>
-                                    </select>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-3">
                                     <label class="form-label fw-semibold">Category <span
                                             class="text-danger">*</span></label>
@@ -72,7 +61,17 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="col-md-3 d-none" id="tourTypeWrapper">
+                                    <label class="form-label fw-semibold">Tour sub Category</label>
 
+                                    <select name="tour_type" id="tourType" class="form-select">
+                                        <option value="">-- Select Tour Type --</option>
+                                        <option value="bangladesh">Bangladesh</option>
+                                        <option value="abroad">Abroad</option>
+                                        <option value="adventure">Adventure</option>
+                                        <option value="international-tour">International Tour</option>
+                                    </select>
+                                </div>
                                 <div class="col-md-4">
                                     <label class="form-label fw-semibold">Price (BDT) <span
                                             class="text-danger">*</span></label>
@@ -347,15 +346,17 @@
             // Dropify init
             $('#thumbnailInput').dropify();
 
-            // handle product type change
-            $('#productType').on('change', function() {
-                handleProductType($(this).val());
+            // Category change → type detect → show fields
+            $('#categorySelect').on('change', function() {
+                const type = $(this).find(':selected').data('type');
+                handleProductType(type);
             });
 
-            // initial load state (VERY IMPORTANT)
-            const oldType = $('#productType').val();
-            if (oldType) {
-                handleProductType(oldType);
+            // initial load state (old value থাকলে)
+            const oldCategory = $('#categorySelect').val();
+            if (oldCategory) {
+                const type = $('#categorySelect').find(':selected').data('type');
+                handleProductType(type);
             }
         });
 
@@ -368,8 +369,8 @@
             $('#tour-fields, #training-fields, #souvenir-fields, #dormitory-fields')
                 .addClass('d-none');
 
-            // TOUR
-            if (type === 'tour') {
+            // WOMENS JOURNEY
+            if (type === 'womens_journey') {
                 $('#tour-fields').removeClass('d-none');
                 $('#tourTypeWrapper').removeClass('d-none');
             } else {
@@ -377,13 +378,13 @@
                 $('#tourType').val('');
             }
 
-            // TRAINING
-            if (type === 'training') {
+            // SKILL TRAINING
+            if (type === 'skill_training') {
                 $('#training-fields').removeClass('d-none');
             }
 
-            // SOUVENIR
-            if (type === 'souvenir') {
+            // SOUVENIRS
+            if (type === 'souvenirs') {
                 $('#souvenir-fields').removeClass('d-none');
             }
 
@@ -391,21 +392,7 @@
             if (type === 'dormitory') {
                 $('#dormitory-fields').removeClass('d-none');
             }
-
-            // CATEGORY FILTER
-            $('#categorySelect option').each(function() {
-                const optType = $(this).data('type');
-
-                if (!optType || optType === type) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-
-            $('#categorySelect').val('');
         }
-
         // ==============================
         // ADD DYNAMIC FIELD
         // ==============================

@@ -1,4 +1,3 @@
-<!-- Shop Section -->
 <section class="shop-section">
     <div class="container-fluid px-4">
         <div class="row g-4">
@@ -17,138 +16,42 @@
             <!-- Right: Products Grid -->
             <div class="col-lg-9 col-md-8">
                 <div class="row g-3">
+                    @foreach ($souvenirs as $index => $souvenir)
+                        {{-- Row 2 offset --}}
+                        {{-- @if ($index === 4)
+                            <div class="col-lg-1 d-none d-lg-block"></div>
+                        @endif --}}
 
-                    <!-- Row 1 -->
-                    <div class="col-lg-3 col-6">
-                        <div class="product-card">
-                            <div class="product-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=400&q=80"
-                                    alt="Nakshi Kantha Scarf">
-                            </div>
-                            <div class="product-body">
-                                <div class="product-top">
-                                    <h4 class="product-name">Nakshi Kantha Scarf</h4>
-                                    <span class="product-badge new">New</span>
+                        <div class="col-lg-3 col-6">
+                            <div class="product-card">
+                                <div class="product-img-wrap">
+                                    <img src="{{ $souvenir->thumbnail ? Storage::url($souvenir->thumbnail) : 'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=400&q=80' }}"
+                                        alt="{{ $souvenir->title }}">
                                 </div>
-                                <p class="product-desc">Hand embroidered traditional kantha stitch on fine muslin. One
-                                    of a kind pattern.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">৳4,500</span>
-                                    <a href="#" class="buy-btn">Buy Now</a>
+                                <div class="product-body">
+                                    <div class="product-top">
+                                        <h4 class="product-name">{{ $souvenir->title }}</h4>
+                                        @if ($souvenir->badge)
+                                            <span class="product-badge {{ strtolower($souvenir->badge) }}">
+                                                {{ $souvenir->badge }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <p class="product-desc">{{ $souvenir->short_description }}</p>
+                                    <div class="product-footer">
+                                        <span class="product-price">৳{{ number_format($souvenir->price) }}</span>
+                                        <a href="{{ route('tour-detail', $souvenir->slug) }}" class="buy-btn">Buy
+                                            Now</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-3 col-6">
-                        <div class="product-card">
-                            <div class="product-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4b4a7d?w=400&q=80"
-                                    alt="Nakshi Kantha Scarf">
-                            </div>
-                            <div class="product-body">
-                                <div class="product-top">
-                                    <h4 class="product-name">Nakshi Kantha Scarf</h4>
-                                    <span class="product-badge limited">Limited</span>
-                                </div>
-                                <p class="product-desc">Hand embroidered traditional kantha stitch on fine muslin. One
-                                    of a kind pattern.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">৳4,500</span>
-                                    <a href="#" class="buy-btn">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-                        <div class="product-card">
-                            <div class="product-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80"
-                                    alt="Nakshi Kantha Scarf">
-                            </div>
-                            <div class="product-body">
-                                <div class="product-top">
-                                    <h4 class="product-name">Nakshi Kantha Scarf</h4>
-                                </div>
-                                <p class="product-desc">Hand embroidered traditional kantha stitch on fine muslin. One
-                                    of a kind pattern.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">৳4,500</span>
-                                    <a href="#" class="buy-btn">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-                        <div class="product-card">
-                            <div class="product-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1602293589930-45aad59ba3ab?w=400&q=80"
-                                    alt="Nakshi Kantha Scarf">
-                            </div>
-                            <div class="product-body">
-                                <div class="product-top">
-                                    <h4 class="product-name">Nakshi Kantha Scarf</h4>
-                                    <span class="product-badge new">New</span>
-                                </div>
-                                <p class="product-desc">Hand embroidered traditional kantha stitch on fine muslin. One
-                                    of a kind pattern.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">৳4,500</span>
-                                    <a href="#" class="buy-btn">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Row 2 — offset -->
-                    <div class="col-lg-1 d-none d-lg-block"></div>
-
-                    <div class="col-lg-3 col-6">
-                        <div class="product-card">
-                            <div class="product-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80"
-                                    alt="Nakshi Kantha Scarf">
-                            </div>
-                            <div class="product-body">
-                                <div class="product-top">
-                                    <h4 class="product-name">Nakshi Kantha Scarf</h4>
-                                    <span class="product-badge limited">Limited</span>
-                                </div>
-                                <p class="product-desc">Hand embroidered traditional kantha stitch on fine muslin. One
-                                    of a kind pattern.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">৳4,500</span>
-                                    <a href="#" class="buy-btn">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-                        <div class="product-card">
-                            <div class="product-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80"
-                                    alt="Nakshi Kantha Scarf">
-                            </div>
-                            <div class="product-body">
-                                <div class="product-top">
-                                    <h4 class="product-name">Nakshi Kantha Scarf</h4>
-                                    <span class="product-badge limited">Limited</span>
-                                </div>
-                                <p class="product-desc">Hand embroidered traditional kantha stitch on fine muslin. One
-                                    of a kind pattern.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">৳4,500</span>
-                                    <a href="#" class="buy-btn">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-1 d-none d-lg-block"></div>
-
+                        {{-- Row 2 end offset --}}
+                        {{-- @if ($index === 5)
+                            <div class="col-lg-1 d-none d-lg-block"></div>
+                        @endif --}}
+                    @endforeach
                 </div>
             </div>
 

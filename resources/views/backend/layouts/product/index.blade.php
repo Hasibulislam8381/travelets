@@ -20,7 +20,6 @@
                                             <th>Thumbnail</th>
                                             <th>Title</th>
                                             <th>Category</th>
-                                            <th>Type</th>
                                             <th>Price</th>
                                             <th>Status</th>
                                             <th>Actions</th>
@@ -88,12 +87,6 @@
                             name: 'category',
                             orderable: false,
                             searchable: false
-                        },
-                        {
-                            data: 'type',
-                            name: 'type',
-                            orderable: true,
-                            searchable: true
                         },
                         {
                             data: 'price',

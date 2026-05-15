@@ -200,14 +200,7 @@
                             <div class="price-value">৳4,500</div>
                             <div class="price-per">/ per-person</div>
                         </div>
-                        <select class="select-persons">
-                            <option>Select person</option>
-                            <option>1 Person</option>
-                            <option>2 Persons</option>
-                            <option>3 Persons</option>
-                            <option>4 Persons</option>
-                            <option>5+ Persons</option>
-                        </select>
+
                         <button class="btn-book">Book Now</button>
                     </div>
                 </div>

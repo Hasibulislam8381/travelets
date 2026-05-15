@@ -3,12 +3,23 @@
 namespace App\Http\Controllers\Web\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Product;
+use Illuminate\View\View;
 
 class TourController extends Controller
 {
-    public function details()
+    public function details(string $slug): View
     {
-        return view('frontend.pages.tour-details');
+        $product = Product::with('category')
+            ->where('slug', $slug)
+            ->where('status', 'active')
+            ->firstOrFail();
+
+        return match($product->category->type) {
+            'womens_journey' => view('frontend.pages.product.tour-show', compact('product')),
+            'skill_training' => view('frontend.pages.product.training-show', compact('product')),
+            'souvenirs'      => view('frontend.pages.product.souvenir-show', compact('product')),
+            default          => abort(404),
+        };
     }
 }

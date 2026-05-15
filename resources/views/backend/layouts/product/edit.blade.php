@@ -28,25 +28,6 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label class="form-label fw-semibold">Type <span class="text-danger">*</span></label>
-                                    <select name="type" id="productType"
-                                        class="form-select @error('type') is-invalid @enderror">
-                                        <option value="">-- Select Type --</option>
-                                        <option value="tour" {{ old('type', $data->type) == 'tour' ? 'selected' : '' }}>
-                                            Tour</option>
-                                        <option value="training"
-                                            {{ old('type', $data->type) == 'training' ? 'selected' : '' }}>Training</option>
-                                        <option value="souvenir"
-                                            {{ old('type', $data->type) == 'souvenir' ? 'selected' : '' }}>Souvenir</option>
-                                        <option value="dormitory" {{ old('type') == 'dormitory' ? 'selected' : '' }}>
-                                            Dormitory</option>
-                                    </select>
-                                    @error('type')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-3">
                                     <label class="form-label fw-semibold">Category <span
                                             class="text-danger">*</span></label>
                                     <select name="category_id" id="categorySelect"
@@ -63,7 +44,24 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-
+                                <div class="col-md-3 d-none" id="tourTypeWrapper">
+                                    <label class="form-label fw-semibold">Tour Sub Category</label>
+                                    <select name="tour_type" id="tourType" class="form-select">
+                                        <option value="">-- Select Tour Type --</option>
+                                        <option value="bangladesh"
+                                            {{ old('tour_type', $data->tour_type) == 'bangladesh' ? 'selected' : '' }}>
+                                            Bangladesh</option>
+                                        <option value="abroad"
+                                            {{ old('tour_type', $data->tour_type) == 'abroad' ? 'selected' : '' }}>Abroad
+                                        </option>
+                                        <option value="adventure"
+                                            {{ old('tour_type', $data->tour_type) == 'adventure' ? 'selected' : '' }}>
+                                            Adventure</option>
+                                        <option value="international-tour"
+                                            {{ old('tour_type', $data->tour_type) == 'international-tour' ? 'selected' : '' }}>
+                                            International Tour</option>
+                                    </select>
+                                </div>
                                 <div class="col-md-4">
                                     <label class="form-label fw-semibold">Price (BDT) <span
                                             class="text-danger">*</span></label>
@@ -342,27 +340,40 @@
         </div>
     </div>
 @endsection
-
 @push('script')
     <script>
-        $('#thumbnailInput').dropify();
+        $(document).ready(function() {
 
-        $('#productType').on('change', function() {
-            const type = $(this).val();
-            $('#tour-fields, #training-fields, #souvenir-fields').addClass('d-none');
-            if (type === 'tour') $('#tour-fields').removeClass('d-none');
-            if (type === 'training') $('#training-fields').removeClass('d-none');
-            if (type === 'souvenir') $('#souvenir-fields').removeClass('d-none');
-            if (type === 'dormitory') $('#dormitory-fields').removeClass('d-none');
-            $('#categorySelect option').each(function() {
-                const optType = $(this).data('type');
-                $(this).toggle(!optType || optType === type);
+            $('#thumbnailInput').dropify();
+
+            // Category change → type detect → show fields
+            $('#categorySelect').on('change', function() {
+                const type = $(this).find(':selected').data('type');
+                handleProductType(type);
             });
-            $('#categorySelect').val('{{ old('category_id', $data->category_id) }}');
+
+            // On load — existing category type দিয়ে fields দেখাবে
+            const existingType = $('#categorySelect').find(':selected').data('type');
+            if (existingType) {
+                handleProductType(existingType);
+            }
         });
 
-        // Trigger on load
-        $('#productType').trigger('change');
+        function handleProductType(type) {
+            $('#tour-fields, #training-fields, #souvenir-fields, #dormitory-fields').addClass('d-none');
+
+            if (type === 'womens_journey') {
+                $('#tour-fields').removeClass('d-none');
+                $('#tourTypeWrapper').removeClass('d-none');
+            } else {
+                $('#tourTypeWrapper').addClass('d-none');
+                $('#tourType').val('');
+            }
+
+            if (type === 'skill_training') $('#training-fields').removeClass('d-none');
+            if (type === 'souvenirs') $('#souvenir-fields').removeClass('d-none');
+            if (type === 'dormitory') $('#dormitory-fields').removeClass('d-none');
+        }
 
         function addField(wrapperId, fieldName) {
             const wrapper = document.getElementById(wrapperId);

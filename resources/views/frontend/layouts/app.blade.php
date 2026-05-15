@@ -13,6 +13,8 @@
     <meta name="description" content="@yield('meta_description', 'A comprehensive women\'s platform redefining safety, growth, and opportunity in Bangladesh.')">
     {{-- google font --}}
     <link href="asset('frontend/css/css2.css')" rel="stylesheet" />
+    {{-- fontawasome --}}
+    <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/swiper-bundle.min.css') }}" />
     @yield('styles')
@@ -29,6 +31,8 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/js/swiper-bundle.min.js') }}"></script>
+    {{-- fontawasome --}}
+    <script src="{{ asset('frontend/js/all.min.js') }}"></script>
     @stack('scripts')
     @yield('scripts')
 </body>

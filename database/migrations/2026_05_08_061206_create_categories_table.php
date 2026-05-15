@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('type')->comment('tour, training, souvenir,dormitory');
+            $table->string('type')->comment('womens_journey, training, souvenir,dormitory');
             $table->string('icon')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
