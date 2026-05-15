@@ -1,5 +1,5 @@
 <nav>
-    <a href="#" class="nav-logo">
+    <a href="{{ route('home') }}" class="nav-logo">
         <img src="{{ asset('frontend/images/logo.png') }}" alt="Vromonkonna Logo" class="logo-img">
     </a>
     <ul class="nav-links">
