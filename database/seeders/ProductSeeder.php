@@ -412,7 +412,7 @@ class ProductSeeder extends Seeder
                     'short_description' => $item['short_description'] ?? null,
                     'description'       => $item['description'] ?? $item['short_description'] ?? null,
                     'price'             => $item['price'],
-                    'thumbnail'         => 'products/thumbnails/DZG1xlFvDWOwhTTjsz4f7WdQyRFrXLq5r9xXAOMw.jpg',
+                    'thumbnail'         => 'products/thumbnails/efBVdRFHyFcsq553hTUYM0rp7eljBDXPalx5sWVy.jpg',
                     'gallery'           => null,
                     'meta'              => $item['meta'] ?? null,
                     'status'            => 'active',

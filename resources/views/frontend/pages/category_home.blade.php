@@ -24,7 +24,7 @@
                                 safe, guided, and empowering experiences from Bangladesh to destinations worldwide.
                             </div>
                         </div>
-                        <a href="#" class="more-btn custom_btn_secondary_color">
+                        <a href="{{ route('travels.index') }}" class="more-btn custom_btn_secondary_color">
                             More Details
                             <svg viewBox="0 0 10 10" fill="none">
                                 <path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" stroke-width="1.2"
@@ -52,7 +52,7 @@
                                 safe, guided, and empowering experiences from Bangladesh to destinations worldwide.
                             </div>
                         </div>
-                        <a href="#" class="more-btn custom_btn_secondary_color">
+                        <a href="{{ route('training.index') }}" class="more-btn custom_btn_secondary_color">
                             More Details
                             <svg viewBox="0 0 10 10" fill="none">
                                 <path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" stroke-width="1.2"
@@ -80,7 +80,7 @@
                                 safe, guided, and empowering experiences from Bangladesh to destinations worldwide.
                             </div>
                         </div>
-                        <a href="#" class="more-btn custom_btn_secondary_color">
+                        <a href="{{ route('dormatory.index') }}" class="more-btn custom_btn_secondary_color">
                             More Details
                             <svg viewBox="0 0 10 10" fill="none">
                                 <path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" stroke-width="1.2"

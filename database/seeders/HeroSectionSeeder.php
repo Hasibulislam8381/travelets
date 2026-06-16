@@ -23,7 +23,7 @@ class HeroSectionSeeder extends Seeder
                 'primary_btn_url'     => '#offer',
                 'secondary_btn_text'  => 'Book Now',
                 'secondary_btn_url'   => '#book',
-                'banner_image'        => 'hero/8SYepx7pFDWhVXLQZvDRpZYoy8Xbi880bJ3HkEdJ.png',
+                'banner_image'        => 'hero/LYPavlbM851eL6ocBOCjwoPxFFCRHrKp5mZzQJl1.jpg',
                 'stat_1_value'        => '4,800+',
                 'stat_1_label'        => 'Women Served',
                 'stat_2_value'        => '42+',

@@ -10,6 +10,9 @@ use App\Http\Controllers\Web\Backend\ProductController;
 use App\Http\Controllers\Web\Backend\ProfileController;
 use App\Http\Controllers\Web\Backend\SocialMediaController;
 use App\Http\Controllers\Web\Backend\SystemSettingController;
+use App\Http\Controllers\Web\Backend\CmsController;
+use App\Http\Controllers\Web\Backend\DormBookingController;
+use App\Http\Controllers\Web\Backend\TeamMemberController;
 
 Route::get('/dashboard', [DashBoardController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -62,4 +65,26 @@ Route::prefix('product')->name('product.')->group(function () {
     Route::post('/update/{id}', [ProductController::class, 'update'])->name('update');
     Route::get('/status/{id}', [ProductController::class, 'status'])->name('status');
     Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy');
+});
+Route::prefix('cms')->name('cms.')->group(function () {
+    Route::get('/', [CmsController::class, 'index'])->name('index');
+    Route::get('/create', [CmsController::class, 'create'])->name('create');
+    Route::post('/store', [CmsController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [CmsController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [CmsController::class, 'update'])->name('update');
+    Route::get('/status/{id}', [CmsController::class, 'status'])->name('status');
+    Route::delete('/destroy/{id}', [CmsController::class, 'destroy'])->name('destroy');
+});
+Route::prefix('team-member')->name('team_member.')->group(function () {
+    Route::get('/', [TeamMemberController::class, 'index'])->name('index');
+    Route::get('/create', [TeamMemberController::class, 'create'])->name('create');
+    Route::post('/store', [TeamMemberController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [TeamMemberController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [TeamMemberController::class, 'update'])->name('update');
+    Route::get('/status/{id}', [TeamMemberController::class, 'status'])->name('status');
+    Route::delete('/destroy/{id}', [TeamMemberController::class, 'destroy'])->name('destroy');
+});
+Route::prefix('dorm-bookings')->name('dorm_booking.')->group(function () {
+    Route::get('/', [DormBookingController::class, 'index'])->name('index');
+    Route::post('/status/{id}', [DormBookingController::class, 'updateStatus'])->name('status');
 });

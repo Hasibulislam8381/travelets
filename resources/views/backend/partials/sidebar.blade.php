@@ -111,9 +111,28 @@
                            <h6 class="lan-8">Applications</h6>
                        </div>
                    </li>
+
+                   {{-- CMS --}}
+                   <li class="sidebar-list">
+                       <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.cms.*') ? 'active' : '' }}"
+                           href="{{ route('admin.cms.index') }}">
+
+                           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                               fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round"
+                               stroke-linejoin="round">
+                               <path d="M12 20h9"></path>
+                               <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                           </svg>
+
+                           <span>CMS</span>
+                       </a>
+                   </li>
+
+                   {{-- Hero Section --}}
                    <li class="sidebar-list">
                        <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.hero_section.*') ? 'active' : '' }}"
                            href="{{ route('admin.hero_section.index') }}">
+
                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                                fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round"
                                stroke-linejoin="round">
@@ -121,6 +140,7 @@
                                <path d="M3 9h18"></path>
                                <path d="M9 21V9"></path>
                            </svg>
+
                            <span>Hero Section</span>
                        </a>
                    </li>
@@ -149,6 +169,37 @@
                                <path d="M16 10a4 4 0 0 1-8 0"></path>
                            </svg>
                            <span>Products</span>
+                       </a>
+                   </li>
+                   <li class="sidebar-list">
+                       <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.team_member.*') ? 'active' : '' }}"
+                           href="{{ route('admin.team_member.index') }}">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                               fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round"
+                               stroke-linejoin="round">
+                               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                               <circle cx="9" cy="7" r="4"></circle>
+                               <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                           </svg>
+                           <span>Team Members</span>
+                       </a>
+                   </li>
+                   {{-- Dorm Bookings --}}
+                   <li class="sidebar-list">
+                       <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.dorm_booking.*') ? 'active' : '' }}"
+                           href="{{ route('admin.dorm_booking.index') }}">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                               fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round"
+                               stroke-linejoin="round">
+                               <path d="M3 21h18"></path>
+                               <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+                               <path d="M9 11h2v2H9z"></path>
+                               <path d="M13 11h2v2h-2z"></path>
+                               <path d="M9 7h2v2H9z"></path>
+                               <path d="M13 7h2v2h-2z"></path>
+                           </svg>
+                           <span>Dorm Bookings</span>
                        </a>
                    </li>
                </ul>

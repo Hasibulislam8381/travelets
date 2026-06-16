@@ -127,70 +127,121 @@
                     <div class="col-lg-6">
                         <div class="booking-panel">
                             <h3>Check Availability & Book</h3>
+                            @if (session('dorm-success'))
+                                <div class="alert alert-success mb-3">{{ session('dorm-success') }}</div>
+                            @endif
+                            @if (session('dorm-error'))
+                                <div class="alert alert-danger mb-3">{{ session('dorm-error') }}</div>
+                            @endif
 
-                            <div class="form-mb">
-                                <label class="form-label-custom">Move-in Date</label>
-                                <div class="input-icon-wrap">
-                                    <input type="date" class="form-control-custom" placeholder="mm/dd/yyyy">
-                                    <span class="icon">
-                                        <svg viewBox="0 0 15 15" fill="none">
-                                            <rect x="1" y="2" width="13" height="12" rx="2"
-                                                stroke="rgba(255,255,255,0.35)" stroke-width="1.2" />
-                                            <path d="M1 6h13M5 1v2M10 1v2" stroke="rgba(255,255,255,0.35)"
-                                                stroke-width="1.2" stroke-linecap="round" />
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
+                            <form action="{{ route('dorm.booking.store') }}" method="POST">
+                                @csrf
 
-                            <div class="row g-3 form-mb">
-                                <div class="col-6">
-                                    <label class="form-label-custom">Duration</label>
-                                    <div class="select-wrap">
-                                        <select class="form-select-custom">
-                                            <option>1 month</option>
-                                            <option>3 months</option>
-                                            <option>6 months</option>
-                                            <option>1 year</option>
-                                        </select>
+                                <div class="form-mb">
+                                    <label class="form-label-custom dorm-text">Move-in Date</label>
+                                    <div class="input-icon-wrap">
+                                        <input type="date" name="move_in_date"
+                                            class="form-control-custom @error('move_in_date') is-invalid @enderror"
+                                            value="{{ old('move_in_date') }}">
+                                        @error('move_in_date')
+                                            <div style="color:#c0392b;font-size:12px;margin-top:4px;">{{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <label class="form-label-custom">Room Type</label>
-                                    <div class="select-wrap">
-                                        <select class="form-select-custom">
-                                            <option>1 bed</option>
-                                            <option>2 bed shared</option>
-                                            <option>4 bed shared</option>
-                                        </select>
+
+                                <div class="row g-3 form-mb">
+                                    <div class="col-6">
+                                        <label class="form-label-custom dorm-text">Duration</label>
+                                        <div class="select-wrap">
+                                            <select name="duration"
+                                                class="form-select-custom @error('duration') is-invalid @enderror">
+                                                <option value="1 month"
+                                                    {{ old('duration') == '1 month' ? 'selected' : '' }}>1 month
+                                                </option>
+                                                <option value="3 months"
+                                                    {{ old('duration') == '3 months' ? 'selected' : '' }}>3 months
+                                                </option>
+                                                <option value="6 months"
+                                                    {{ old('duration') == '6 months' ? 'selected' : '' }}>6 months
+                                                </option>
+                                                <option value="1 year"
+                                                    {{ old('duration') == '1 year' ? 'selected' : '' }}>1 year
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label-custom dorm-text">Room Type</label>
+                                        <div class="select-wrap">
+                                            <select name="room_type"
+                                                class="form-select-custom @error('room_type') is-invalid @enderror">
+                                                @if (!empty($dorm->meta['room_types']))
+                                                    @foreach ($dorm->meta['room_types'] as $room)
+                                                        <option value="{{ $room }}"
+                                                            {{ old('room_type') == $room ? 'selected' : '' }}>
+                                                            {{ $room }}</option>
+                                                    @endforeach
+                                                @else
+                                                    <option value="1 bed">1 bed</option>
+                                                    <option value="2 bed shared">2 bed shared</option>
+                                                    <option value="4 bed shared">4 bed shared</option>
+                                                @endif
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-mb">
-                                <label class="form-label-custom">Full Name</label>
-                                <input type="text" class="form-control-custom" placeholder="name here">
-                            </div>
-
-                            <div class="row g-3 form-mb">
-                                <div class="col-6">
-                                    <label class="form-label-custom">Phone Number</label>
-                                    <input type="text" class="form-control-custom" placeholder="••••••••••">
+                                <div class="form-mb">
+                                    <label class="form-label-custom dorm-text">Full Name</label>
+                                    <input type="text" name="full_name"
+                                        class="form-control-custom @error('full_name') is-invalid @enderror"
+                                        placeholder="name here" value="{{ old('full_name') }}">
+                                    @error('full_name')
+                                        <div style="color:#c0392b;font-size:12px;margin-top:4px;">{{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                                <div class="col-6">
-                                    <label class="form-label-custom">Occupation</label>
-                                    <div class="select-wrap">
-                                        <select class="form-select-custom">
-                                            <option>Student</option>
-                                            <option>Professional</option>
-                                            <option>Business</option>
-                                            <option>Other</option>
-                                        </select>
+
+                                <div class="row g-3 form-mb">
+                                    <div class="col-6">
+                                        <label class="form-label-custom dorm-text">Phone Number</label>
+                                        <input type="text" name="phone"
+                                            class="form-control-custom @error('phone') is-invalid @enderror"
+                                            placeholder="••••••••••" value="{{ old('phone') }}">
+                                        @error('phone')
+                                            <div style="color:#c0392b;font-size:12px;margin-top:4px;">{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label-custom dorm-text dorm-text">Occupation</label>
+                                        <div class="select-wrap">
+                                            <select name="occupation"
+                                                class="form-select-custom @error('occupation') is-invalid @enderror">
+                                                <option value="Student"
+                                                    {{ old('occupation') == 'Student' ? 'selected' : '' }}>Student
+                                                </option>
+                                                <option value="Professional"
+                                                    {{ old('occupation') == 'Professional' ? 'selected' : '' }}>
+                                                    Professional</option>
+                                                <option value="Business"
+                                                    {{ old('occupation') == 'Business' ? 'selected' : '' }}>
+                                                    Business</option>
+                                                <option value="Other"
+                                                    {{ old('occupation') == 'Other' ? 'selected' : '' }}>Other
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <a href="#" class="request-btn">Request Booking</a>
+                                <button type="submit" class="request-btn"
+                                    style="border:none;width:100%;cursor:pointer;">
+                                    Request Booking
+                                </button>
+
+                            </form>
 
                         </div>
 

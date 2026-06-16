@@ -69,7 +69,11 @@
                         <div class="d-flex align-items-baseline gap-2">
                             <div class="price-value">৳{{ number_format($product->price) }}</div>
                         </div>
-                        <button class="btn-book mt-3">Buy Now</button>
+                        <div class="mt-3">
+                            <a href="{{ route('checkout', $product->id) }}" class="btn-book">
+                                Book Now
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

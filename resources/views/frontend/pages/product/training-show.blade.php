@@ -73,7 +73,11 @@
                             <div class="price-value">৳{{ number_format($product->price) }}</div>
                             <div class="price-per">/ monthly</div>
                         </div>
-                        <button class="btn-book mt-3">Register Now</button>
+                        <div class="mt-3">
+                            <a href="{{ route('checkout', $product->id) }}" class="btn-book">
+                                Register Now
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

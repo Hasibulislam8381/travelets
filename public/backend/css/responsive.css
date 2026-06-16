@@ -2642,6 +2642,8 @@
     margin-right: 10px;
     padding-right: 20px;
   }
+  .tour-info-right { margin-top: 12px; }
+.summary-card { position: static; margin-top: 20px; }
   .comment-box {
     padding-top: 40px;
     padding-bottom: 40px;

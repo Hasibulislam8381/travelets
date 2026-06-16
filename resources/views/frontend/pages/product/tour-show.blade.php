@@ -34,7 +34,7 @@
                         <h2 class="section-title">{{ $product->title }}</h2>
                         <p class="section-desc">{{ $product->description }}</p>
                     </div>
-
+             
                     <!-- Included / Excluded -->
                     @if (!empty($product->meta['includes']) || !empty($product->meta['excludes']))
                         <div class="main-content">
@@ -139,8 +139,12 @@
                             <div class="price-value">৳{{ number_format($product->price) }}</div>
                             <div class="price-per">/ per-person</div>
                         </div>
+                        <div class="mt-3">
+                            <a href="{{ route('checkout', $product->id) }}" class="btn-book">
+                                Book Now
+                            </a>
+                        </div>
 
-                        <button class="btn-book">Book Now</button>
                     </div>
                 </div>
             </div>
