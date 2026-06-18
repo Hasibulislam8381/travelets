@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\Frontend\HomeController;
 use App\Http\Controllers\Web\Frontend\CheckoutController;
 use App\Http\Controllers\Web\Frontend\TourController;
 use App\Http\Controllers\Web\Frontend\DormBookingController;
+use App\Http\Controllers\Web\Frontend\AuthController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,28 @@ Route::post('/dorm-booking', [DormBookingController::class, 'store'])->name('dor
 // Route::get('/dashboard', [DashBoardController::class, 'index'])
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
+
+// Guest only
+Route::middleware('guest')->prefix('user')->name('user.')->group(function () {
+    Route::get('/login', [AuthController::class, 'loginPage'])
+        ->name('login');
+
+    Route::post('/login', [AuthController::class, 'login'])
+        ->name('login.post');
+
+    Route::get('/register', [AuthController::class, 'registerPage'])
+        ->name('register');
+
+    Route::post('/register', [AuthController::class, 'register'])
+        ->name('register.post');
+});
+// Auth only
+Route::middleware('auth')->prefix('user')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/profile', [AuthController::class, 'profile'])->name('user.profile');
+    Route::post('/profile/update', [AuthController::class, 'profileUpdate'])->name('user.profile.update');
+    Route::post('/profile/password', [AuthController::class, 'passwordUpdate'])->name('user.password.update');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

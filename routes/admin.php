@@ -13,6 +13,7 @@ use App\Http\Controllers\Web\Backend\SystemSettingController;
 use App\Http\Controllers\Web\Backend\CmsController;
 use App\Http\Controllers\Web\Backend\DormBookingController;
 use App\Http\Controllers\Web\Backend\TeamMemberController;
+use App\Http\Controllers\Web\Backend\DormController;
 
 Route::get('/dashboard', [DashBoardController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -88,3 +89,5 @@ Route::prefix('dorm-bookings')->name('dorm_booking.')->group(function () {
     Route::get('/', [DormBookingController::class, 'index'])->name('index');
     Route::post('/status/{id}', [DormBookingController::class, 'updateStatus'])->name('status');
 });
+Route::get('/dorm/edit', [DormController::class, 'edit'])->name('dorm.edit');
+Route::post('/dorm/update', [DormController::class, 'update'])->name('dorm.update');

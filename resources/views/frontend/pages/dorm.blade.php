@@ -1,132 +1,97 @@
+@php
+    $dorm = \App\Models\Dorm::first();
+    $icons = [
+        'security' =>
+            '<path d="M12 18a6 6 0 1 1 12 0" stroke="#c8783a" stroke-width="1.3" stroke-linecap="round"/><circle cx="18" cy="18" r="2" fill="#c8783a"/><path d="M18 10v2M18 26v2M10 18h2M26 18h2" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" stroke-linecap="round"/>',
+        'lock' =>
+            '<path d="M12 22v-8a6 6 0 0 1 12 0v8" stroke="#c8783a" stroke-width="1.3" stroke-linecap="round"/><rect x="10" y="22" width="16" height="4" rx="1" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>',
+        'wifi' =>
+            '<path d="M11 20h14M13 20v-4a5 5 0 0 1 10 0v4" stroke="#c8783a" stroke-width="1.3" stroke-linecap="round"/><path d="M11 20v3h14v-3" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>',
+        'person' =>
+            '<path d="M13 22c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="#c8783a" stroke-width="1.3" stroke-linecap="round"/><circle cx="18" cy="14" r="3" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>',
+        'bed' =>
+            '<rect x="12" y="13" width="12" height="10" rx="2" stroke="#c8783a" stroke-width="1.3"/><path d="M15 13v-2a3 3 0 0 1 6 0v2" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-linecap="round"/><circle cx="18" cy="18" r="1.2" fill="#c8783a"/>',
+        'chart' =>
+            '<path d="M12 24l3-4 3 3 3-4 3 5" stroke="#c8783a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 12v2M14 13l1 1.7M22 13l-1 1.7" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>',
+    ];
+@endphp
+
 <section class="dorm-section">
     <div class="container-fluid px-4">
         <div class="row g-4">
 
-            <!-- Left -->
             <div class="col-lg-12">
 
-                <h2 class="section-title">A home away from home*</h2>
-                <p class="section-desc">Empowering women across Bangladesh through safe travel, skill-building, secure
-                    stays, and inclusive growth programs — created by women, for women.</p>
+                <h2 class="section-title">
+                    {{ $dorm->meta['section_title'] ?? 'A home away from home*' }}
+                </h2>
+                <p class="section-desc">
+                    {{ $dorm->meta['section_desc'] ?? 'Empowering women across Bangladesh through safe travel, skill-building, secure stays, and inclusive growth programs — created by women, for women.' }}
+                </p>
 
-                <!-- Features Grid -->
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="row g-3">
 
-                            <div class="col-6">
-                                <div class="feature-card">
-                                    <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-                                        <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,0.3)"
-                                            stroke-width="1" />
-                                        <path d="M12 18a6 6 0 1 1 12 0" stroke="#c8783a" stroke-width="1.3"
-                                            stroke-linecap="round" />
-                                        <circle cx="18" cy="18" r="2" fill="#c8783a" />
-                                        <path d="M18 10v2M18 26v2M10 18h2M26 18h2" stroke="rgba(255,255,255,0.3)"
-                                            stroke-width="1.2" stroke-linecap="round" />
-                                    </svg>
-                                    <h4>24/7 Security</h4>
-                                    <p>Women-only secure access with CCTV monitoring</p>
+                            {{-- Feature Cards --}}
+                            @forelse($dorm->meta['features'] ?? [] as $feature)
+                                <div class="col-6">
+                                    <div class="feature-card">
+                                        <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
+                                            <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,0.3)"
+                                                stroke-width="1" />
+                                            {!! $icons[$feature['icon']] ?? $icons['security'] !!}
+                                        </svg>
+                                        <h4>{{ $feature['title'] }}</h4>
+                                        <p>{{ $feature['description'] }}</p>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-card">
-                                    <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-                                        <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,0.3)"
-                                            stroke-width="1" />
-                                        <path d="M12 22v-8a6 6 0 0 1 12 0v8" stroke="#c8783a" stroke-width="1.3"
-                                            stroke-linecap="round" />
-                                        <rect x="10" y="22" width="16" height="4" rx="1"
-                                            stroke="rgba(255,255,255,0.4)" stroke-width="1.2" />
-                                    </svg>
-                                    <h4>24/7 Security</h4>
-                                    <p>Women-only secure access with CCTV monitoring</p>
+                            @empty
+                                {{-- Fallback: meta না থাকলে static দেখাবে --}}
+                                <div class="col-6">
+                                    <div class="feature-card">
+                                        <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
+                                            <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,0.3)"
+                                                stroke-width="1" />
+                                            {!! $icons['security'] !!}
+                                        </svg>
+                                        <h4>24/7 Security</h4>
+                                        <p>Women-only secure access with CCTV monitoring</p>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-card">
-                                    <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-                                        <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,0.3)"
-                                            stroke-width="1" />
-                                        <path d="M11 20h14M13 20v-4a5 5 0 0 1 10 0v4" stroke="#c8783a"
-                                            stroke-width="1.3" stroke-linecap="round" />
-                                        <path d="M11 20v3h14v-3" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"
-                                            stroke-linecap="round" />
-                                    </svg>
-                                    <h4>24/7 Security</h4>
-                                    <p>Women-only secure access with CCTV monitoring</p>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-card">
-                                    <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-                                        <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,0.3)"
-                                            stroke-width="1" />
-                                        <path d="M13 22c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="#c8783a" stroke-width="1.3"
-                                            stroke-linecap="round" />
-                                        <circle cx="18" cy="14" r="3" stroke="rgba(255,255,255,0.5)"
-                                            stroke-width="1.2" />
-                                    </svg>
-                                    <h4>24/7 Security</h4>
-                                    <p>Women-only secure access with CCTV monitoring</p>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-card">
-                                    <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-                                        <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,0.3)"
-                                            stroke-width="1" />
-                                        <rect x="12" y="13" width="12" height="10" rx="2"
-                                            stroke="#c8783a" stroke-width="1.3" />
-                                        <path d="M15 13v-2a3 3 0 0 1 6 0v2" stroke="rgba(255,255,255,0.4)"
-                                            stroke-width="1.2" stroke-linecap="round" />
-                                        <circle cx="18" cy="18" r="1.2" fill="#c8783a" />
-                                    </svg>
-                                    <h4>24/7 Security</h4>
-                                    <p>Women-only secure access with CCTV monitoring</p>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-card">
-                                    <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-                                        <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,0.3)"
-                                            stroke-width="1" />
-                                        <path d="M12 24l3-4 3 3 3-4 3 5" stroke="#c8783a" stroke-width="1.3"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M18 12v2M14 13l1 1.7M22 13l-1 1.7" stroke="rgba(255,255,255,0.4)"
-                                            stroke-width="1.2" stroke-linecap="round" />
-                                    </svg>
-                                    <h4>24/7 Security</h4>
-                                    <p>Women-only secure access with CCTV monitoring</p>
-                                </div>
-                            </div>
+                            @endforelse
 
                         </div>
 
-                        <!-- Pricing Bar -->
+                        {{-- Pricing Bar --}}
                         <div class="pricing-bar">
-                            <div class="pricing-item">
-                                <div class="pricing-amount">৳2,500</div>
-                                <div class="pricing-label">/ month — Shared (4-bed)</div>
-                            </div>
-                            <div class="pricing-item">
-                                <div class="pricing-amount">৳3,500</div>
-                                <div class="pricing-label">/ month — Shared (4-bed)</div>
-                            </div>
-                            <div class="pricing-item">
-                                <div class="pricing-amount">৳5,500</div>
-                                <div class="pricing-label">/ month — Shared (4-bed)</div>
-                            </div>
+                            @forelse($dorm->meta['pricing'] ?? [] as $price)
+                                <div class="pricing-item">
+                                    <div class="pricing-amount">৳{{ $price['amount'] }}</div>
+                                    <div class="pricing-label">{{ $price['label'] }}</div>
+                                </div>
+                            @empty
+                                <div class="pricing-item">
+                                    <div class="pricing-amount">৳2,500</div>
+                                    <div class="pricing-label">/ month — Shared (4-bed)</div>
+                                </div>
+                                <div class="pricing-item">
+                                    <div class="pricing-amount">৳3,500</div>
+                                    <div class="pricing-label">/ month — Shared (2-bed)</div>
+                                </div>
+                                <div class="pricing-item">
+                                    <div class="pricing-amount">৳5,500</div>
+                                    <div class="pricing-label">/ month — Private (1-bed)</div>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
+
+                    {{-- Booking Form --}}
                     <div class="col-lg-6">
                         <div class="booking-panel">
                             <h3>Check Availability & Book</h3>
+
                             @if (session('dorm-success'))
                                 <div class="alert alert-success mb-3">{{ session('dorm-success') }}</div>
                             @endif
@@ -180,7 +145,8 @@
                                                     @foreach ($dorm->meta['room_types'] as $room)
                                                         <option value="{{ $room }}"
                                                             {{ old('room_type') == $room ? 'selected' : '' }}>
-                                                            {{ $room }}</option>
+                                                            {{ $room }}
+                                                        </option>
                                                     @endforeach
                                                 @else
                                                     <option value="1 bed">1 bed</option>
@@ -198,8 +164,7 @@
                                         class="form-control-custom @error('full_name') is-invalid @enderror"
                                         placeholder="name here" value="{{ old('full_name') }}">
                                     @error('full_name')
-                                        <div style="color:#c0392b;font-size:12px;margin-top:4px;">{{ $message }}
-                                        </div>
+                                        <div style="color:#c0392b;font-size:12px;margin-top:4px;">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -215,7 +180,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-6">
-                                        <label class="form-label-custom dorm-text dorm-text">Occupation</label>
+                                        <label class="form-label-custom dorm-text">Occupation</label>
                                         <div class="select-wrap">
                                             <select name="occupation"
                                                 class="form-select-custom @error('occupation') is-invalid @enderror">
@@ -242,17 +207,11 @@
                                 </button>
 
                             </form>
-
                         </div>
-
                     </div>
+
                 </div>
-
-
             </div>
-
-            <!-- Right: Booking Form -->
-
 
         </div>
     </div>

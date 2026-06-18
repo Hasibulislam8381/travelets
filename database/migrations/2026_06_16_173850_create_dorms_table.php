@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('agree_to_terms')->default(false)->after('password');
+        Schema::create('dorms', function (Blueprint $table) {
+            $table->id();
+            $table->json('meta')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('agree_to_terms');
-        });
+        Schema::dropIfExists('dorms');
     }
 };
