@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\SystemSetting;
+use App\Repositories\BookingRepository;
+use App\Services\SslCommerzService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(SslCommerzService::class);
+        $this->app->singleton(BookingRepository::class);
     }
 
     /**

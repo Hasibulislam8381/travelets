@@ -7,12 +7,12 @@ use App\Http\Controllers\Web\Frontend\CheckoutController;
 use App\Http\Controllers\Web\Frontend\TourController;
 use App\Http\Controllers\Web\Frontend\DormBookingController;
 use App\Http\Controllers\Web\Frontend\AuthController;
-
+use App\Http\Controllers\Web\Frontend\BookingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tour-details/{slug}', [TourController::class, 'details'])->name('tour-detail');
-Route::get('/travels',  [TourController::class, 'travels'])->name('travels.index');
+Route::get('/travels', [TourController::class, 'travels'])->name('travels.index');
 Route::get('/training', [TourController::class, 'training'])->name('training.index');
 Route::get('/souvenirs', [TourController::class, 'souvenirs'])->name('souvenirs.index');
 Route::get('/dormatory', [TourController::class, 'dormatory'])->name('dormatory.index');
@@ -37,6 +37,17 @@ Route::middleware('guest')->prefix('user')->name('user.')->group(function () {
     Route::post('/register', [AuthController::class, 'register'])
         ->name('register.post');
 });
+
+Route::get('/checkout/{product}', [BookingController::class, 'checkout'])->name('checkout');
+
+// Payment routes
+Route::post('/checkout/{product}/pay', [BookingController::class, 'initiatePayment'])
+    ->name('checkout.pay')->middleware('auth');
+
+Route::post('/payment/success', [BookingController::class, 'paymentSuccess'])->name('payment.success');
+Route::post('/payment/fail', [BookingController::class, 'paymentFail'])->name('payment.fail');
+Route::post('/payment/cancel', [BookingController::class, 'paymentCancel'])->name('payment.cancel');
+Route::post('/payment/ipn', [BookingController::class, 'paymentIpn'])->name('payment.ipn');
 // Auth only
 Route::middleware('auth')->prefix('user')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
